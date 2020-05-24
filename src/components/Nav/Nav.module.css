@@ -1,7 +1,7 @@
 .nav {
-     background-color: #aaaec1;
-     padding: 10px;
- }
+    background-color: #aaaec1;
+    padding: 10px;
+}
 
 .item {
     font-family: Arial, serif;
@@ -12,6 +12,16 @@
     margin-bottom: 5px;
     padding: 0 6px;
 }
+
+.item a {
+    color: white;
+    text-decoration: none;
+}
+
+a.active {
+    color: gold;
+}
+
 nav {
     grid-area: nav;
 

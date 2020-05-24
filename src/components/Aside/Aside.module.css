@@ -1,0 +1,6 @@
+aside {
+    background-color: darkcyan;
+}
+aside{
+    grid-area: aside;
+}

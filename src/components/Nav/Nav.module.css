@@ -1,0 +1,18 @@
+.nav {
+     background-color: #aaaec1;
+     padding: 10px;
+ }
+
+.item {
+    font-family: Arial, serif;
+    font-size: 12pt;
+    border: 1px dotted rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0 6px;
+}
+nav {
+    grid-area: nav;
+
+}

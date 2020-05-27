@@ -1,13 +1,11 @@
 .nav {
-    background-color: #aaaec1;
+    background-color: #0d58c8;
     padding: 10px;
 }
 
 .item {
-    font-family: Arial, serif;
-    font-size: 12pt;
-    border: 1px dotted rgba(0, 0, 0, .2);
-    border-radius: 5px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14pt;
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 0 6px;

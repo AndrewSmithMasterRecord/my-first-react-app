@@ -7,11 +7,12 @@
                           "nav content"
                            "footer footer";
 
-    grid-template-columns: 110px 1fr ;
+    grid-template-columns: 150px 1fr ;
     grid-template-rows: 120px 1fr;
     grid-gap: 7px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 }
 .app-wrapper-content{
-    background-color: aqua;
     grid-area: content;
 }

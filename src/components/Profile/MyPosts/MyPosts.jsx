@@ -3,20 +3,25 @@ import p from './MyPosts.module.css'
 import Post from "./Post/Post";
 
 
-const MyPosts = () => {
-    return <div >
+
+
+const MyPosts = (props) => {
+
+    let postElements = props.postData
+        .map((item) => {
+            return <Post message={item.message} likeCount={item.likes}/>
+        });
+    return <div>
         <div className={p.postInput}>
-        <h3>My posts</h3>
-        <div >
-            <textarea></textarea>
+            <h3>My posts</h3>
             <div>
-                <button>Отправить</button>
+                <textarea></textarea>
+                <div>
+                    <button>Отправить</button>
+                </div>
             </div>
         </div>
-        </div>
-
-        <Post message='Hello world' likeCount='10'/>
-        <Post message='Oppa!' likeCount='2'/>
+        { postElements }
     </div>
 };
 

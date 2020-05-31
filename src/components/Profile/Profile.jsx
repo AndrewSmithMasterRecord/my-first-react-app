@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./Profileinfo/ProfileInfo";
 
 
-const Profile = () => {
+const Profile = (props) => {
     return <div className={`${p.profile} content`}>
         <div>
             <img
@@ -12,7 +12,7 @@ const Profile = () => {
                 alt=""/>
         </div>
         <ProfileInfo/>
-        <MyPosts/>
+        <MyPosts postData={props.postData}/>
     </div>
 };
 

@@ -25,4 +25,23 @@ let state = {
     }
 };
 
+export let addPost = (message) => {
+    let lastId = Number(state.profilePage.postData[state.profilePage.postData.length - 1].id);
+    let messageObj = {
+        id: String(lastId + 1),
+        likes: '0',
+        message: message
+    };
+    state.profilePage.postData.push(messageObj);
+};
+
+export let addMessage = (message) => {
+    let lastId = Number(state.dialogsPage.messagesData[state.dialogsPage.messagesData.length - 1].id);
+    let messageObj = {
+        id: String(lastId + 1),
+        message: message
+    };
+    state.dialogsPage.messagesData.push(messageObj);
+};
+
 export default state;

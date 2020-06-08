@@ -13,11 +13,16 @@ const Dialogs = (props) => {
     let textElement = React.createRef();
 
     let addMessage = () => {
-        props.state.addMessage();
+        let action = {type: 'ADD-MESSAGE'};
+        props.dispatch(action);
     };
-    let updateMessage = () =>{
+    let updateMessage = () => {
         let text = textElement.current.value;
-        props.state.updateMessageText(text);
+        let action = {
+            type: 'UPDATE-MESSAGE-TEXT',
+            newText: text
+        };
+        props.dispatch(action);
     };
 
     return (

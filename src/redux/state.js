@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
+
 let store = {
     _state: {
         profilePage: {
@@ -31,12 +36,11 @@ let store = {
         return this._state;
     },
 
-    callSubscriber() {
+    _callSubscriber() {
         console.log('State has changed');
     },
-
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) { //добавление нового поста
             let lastId = Number(this._state.profilePage.postData[this._state.profilePage.postData.length - 1].id);
             let messageObj = {
                 id: String(lastId + 1),
@@ -45,26 +49,39 @@ let store = {
             };
             this._state.profilePage.postData.push(messageObj);
             this._state.profilePage.newPostText = '';
-            this.callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this.callSubscriber(this._state);
-        } else if (action.type === 'ADD-MESSAGE') {
-            let lastId = Number(this._state.dialogsPage.messagesData[this._state.dialogsPage.messagesData.length - 1].id);
-            let messageObj = {
-                id: String(lastId + 1),
-                message: this._state.dialogsPage.newMessageText
-            };
-            this._state.dialogsPage.messagesData.push(messageObj);
-            this._state.dialogsPage.newMessageText = '';
-            this.callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newText;
-            this.callSubscriber(this._state);
+            this._callSubscriber(this._state);
+        } else {
+            if (action.type === UPDATE_POST_TEXT) { // Обновление текста в textarea
+                this._state.profilePage.newPostText = action.newText;
+                this._callSubscriber(this._state);
+            } else {
+
+                if (action.type === ADD_MESSAGE) { // Добавление нового сообщения
+                    let lastId = Number(this._state.dialogsPage.messagesData[this._state.dialogsPage.messagesData.length - 1].id);
+                    let messageObj = {
+                        id: String(lastId + 1),
+                        message: this._state.dialogsPage.newMessageText
+                    };
+                    this._state.dialogsPage.messagesData.push(messageObj);
+                    this._state.dialogsPage.newMessageText = '';
+                    this._callSubscriber(this._state);
+                } else {
+
+                    if (action.type === UPDATE_MESSAGE_TEXT) { // Обновление текста в textarea
+                        this._state.dialogsPage.newMessageText = action.newText;
+                        this._callSubscriber(this._state);
+                    }
+                }
+            }
         }
     }
 
 };
+
+export const addPostActionCreator = () => ({type: ADD_POST});
+export const updatePostTextActionCreator = (text) => ({type: UPDATE_POST_TEXT, newText: text});
+export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
+export const updateMessageTextActionCreator = (text) => ({type: UPDATE_MESSAGE_TEXT, newText: text});
 
 
 window.store = store;

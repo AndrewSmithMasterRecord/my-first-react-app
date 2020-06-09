@@ -2,7 +2,7 @@ import React from "react";
 import d from './Dialogs.module.css'
 import DialogItem from "./Dialogitem/DialogItem";
 import Message from "./Message/Message";
-import {addMessageActionCreator, updateMessageTextActionCreator} from "../../redux/state";
+import {addMessageActionCreator, updateMessageTextActionCreator} from "../../redux/dialogs_reducer";
 
 
 const Dialogs = (props) => {
@@ -32,6 +32,7 @@ const Dialogs = (props) => {
                     <textarea ref={textElement}
                               value={props.state.newMessageText}
                               onChange={updateMessage}
+                              placeholder={'Write here something'}
                     />
                     <div>
                         <button onClick={addMessage}>Нажми меня нежно</button>

@@ -13,7 +13,7 @@ const Profile = (props) => {
                 alt=""/>
         </div>
         <ProfileInfo/>
-        <MyPostsContainer store={props.store}/>
+        <MyPostsContainer />
     </div>
 };
 

@@ -4,10 +4,9 @@ import Post from "./Post/Post";
 
 
 const MyPosts = (props) => {
-
     let postElements = props.state.postData
         .map((item) => {
-            return <Post message={item.message} likeCount={item.likes}/>
+            return <Post message={item.message} likeCount={item.likes} key={item.id}/>
         });
 
     let addPost = () => {
@@ -17,7 +16,6 @@ const MyPosts = (props) => {
         let text = elem.target.value;
        props.updatePost(text);
     };
-
 
     return <div>
         <div className={p.postInput}>

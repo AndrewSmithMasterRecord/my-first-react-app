@@ -10,7 +10,6 @@ let initial_value = {
 };
 
 const profileReducer = (state = initial_value, action) => {
-
     switch (action.type) {
         case ADD_POST:
             let lastId = Number(state.postData[state.postData.length - 1].id);
@@ -19,12 +18,16 @@ const profileReducer = (state = initial_value, action) => {
                 likes: '0',
                 message: state.newPostText
             };
-            state.postData.push(messageObj);
-            state.newPostText = '';
-            return state;
+            return {
+                ...state,
+                newPostText: '',
+                postData: [...state.postData, messageObj]
+            };
         case UPDATE_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+            return {
+                ...state,
+                newPostText: action.newText
+            };
         default:
             return state;
     }

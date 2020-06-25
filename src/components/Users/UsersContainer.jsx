@@ -13,8 +13,8 @@ let mapDispatchToProps = (dispatch) => {
       followToggle(id) {
           dispatch(followToggleAC(id));
       },
-      set_users () {
-          dispatch(setUsersAC());
+      set_users (users) {
+          dispatch(setUsersAC(users));
       }
   }
 };

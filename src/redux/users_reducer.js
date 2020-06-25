@@ -3,7 +3,29 @@ const SET_USERS = 'SET-USERS';
 
 let initial_value = {
     users: [
+       /* {
+            "name": "Limon",
+            "id": 8961,
+            "uniqueUrlName": null,
+            "photos": {
+                "small": null,
+                "large": null
+            },
+            "status": null,
+            "followed": false
+        },
         {
+            "name": "FedechkoYuriy",
+            "id": 8960,
+            "uniqueUrlName": null,
+            "photos": {
+                "small": null,
+                "large": null
+            },
+            "status": null,
+            "followed": false
+        }*/
+        /*{
             id: '1',
             followed: true,
             fullName: 'Andrew',
@@ -30,7 +52,7 @@ let initial_value = {
             fullName: 'Petia',
             status: 'I am a boss too',
             location: {city: 'Gomel', country: 'Belarus'}
-        },
+        },*/
     ],
 };
 
@@ -54,7 +76,7 @@ const usersReducer = (state = initial_value, action) => {
         case SET_USERS:
             return {
                 ...state,
-                users: [ ...state.users, ...action.users]
+                users: [...state.users, ...action.users]
             };
 
         default:

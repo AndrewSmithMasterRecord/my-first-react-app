@@ -1,5 +1,6 @@
 import React from "react";
 import s from './UserItem.module.css'
+import userPhoto from '../../../assets/photos/user.jpg'
 
 const UserItem = (props) => {
 
@@ -12,7 +13,7 @@ const UserItem = (props) => {
             <div className={s.logo}>
                 <div>
                     <img
-                        src="https://yandex.by/images/_crpd/1O3zLa118/c041a2p76a0/1pHT6PaIOKWwlSWo1u-hCjRxxD4C1-DUBh1EQ8lAGdyKOb9UgsUQf3xwfvmvKDrlVnpVqBhn-nBbFJAOOLz35VKUFTtjTXghpcVg-8HvNh1mZROrFFQyFwNPFgJLAcv"
+                        src={props.userAvatar? props.userAvatar : userPhoto}
                         alt=""/>
                 </div>
                 <div>
@@ -26,7 +27,7 @@ const UserItem = (props) => {
                     {props.name}
                 </div>
                 <div className={s.item2}>
-                    {props.status}
+                    {props.status? props.status : '...'}
                 </div>
                 <div className={s.item3}>
                     <div>

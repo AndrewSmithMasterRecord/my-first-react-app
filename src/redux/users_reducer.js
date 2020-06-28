@@ -1,5 +1,9 @@
 const FOLLOW_TOGGLE = 'FOLLOW-TOGGLE';
 const SET_USERS = 'SET-USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const USERS_COUNT = 'USERS_COUNT';
+const SET_FETCHING_STATE = 'SET_FETCHING_STATE';
+
 
 let initial_value = {
     users: [
@@ -54,6 +58,10 @@ let initial_value = {
             location: {city: 'Gomel', country: 'Belarus'}
         },*/
     ],
+    currentPage: 1,
+    pageSize: 10,
+    totalUsers: 0,
+    isFetching: false
 };
 
 
@@ -76,7 +84,22 @@ const usersReducer = (state = initial_value, action) => {
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [ ...action.users]
+            };
+        case SET_CURRENT_PAGE:
+            return{
+                ...state,
+                currentPage: action.page
+            };
+        case USERS_COUNT:
+            return{
+                ...state,
+                totalUsers: action.count
+            };
+        case SET_FETCHING_STATE:
+            return{
+                ...state,
+                isFetching: action.isFetching
             };
 
         default:
@@ -84,8 +107,12 @@ const usersReducer = (state = initial_value, action) => {
     }
 };
 
-export const followToggleAC = (id) => ({type: FOLLOW_TOGGLE, id: id});
-export const setUsersAC = (users) => ({type: SET_USERS, users: users});
+export const followToggle = (id) => ({type: FOLLOW_TOGGLE, id: id});
+export const setUsers = (users) => ({type: SET_USERS, users: users});
+export const setCurrentPage = (page) =>({type: SET_CURRENT_PAGE, page: page});
+export const setUsersCounter = (count) => ({type: USERS_COUNT, count: count});
+export const setFetchingState = (isFetching) => ({type: SET_FETCHING_STATE, isFetching: isFetching});
+
 
 
 

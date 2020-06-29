@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+const SET_PROFILE_INFO = 'SET_PROFILE_INFO';
+const IS_FETCHING = 'IS_FETCHING';
 
 let initial_value = {
     postData: [
@@ -7,6 +9,8 @@ let initial_value = {
         {id: '2', likes: '2', message: 'Oppa!'},
     ],
     newPostText: '',
+    isFetching: false,
+    profileInfo: null
 };
 
 const profileReducer = (state = initial_value, action) => {
@@ -28,6 +32,16 @@ const profileReducer = (state = initial_value, action) => {
                 ...state,
                 newPostText: action.newText
             };
+        case SET_PROFILE_INFO:
+            return {
+                ...state,
+                profileInfo: action.profileInfo
+            };
+        case IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            };
         default:
             return state;
     }
@@ -35,5 +49,7 @@ const profileReducer = (state = initial_value, action) => {
 
 export const addPostActionCreator = () => ({type: ADD_POST});
 export const updatePostTextActionCreator = (text) => ({type: UPDATE_POST_TEXT, newText: text});
+export const setProfileInfo = (profileInfo) => ({type: SET_PROFILE_INFO, profileInfo});
+export const setIsFetching = (isFetching) => ({type: IS_FETCHING, isFetching});
 
 export default profileReducer

@@ -1,19 +1,23 @@
 import React from 'react';
 import p from './Profile.module.css'
-import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./Profileinfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-
+import banner from '../../assets/photos/banner.png'
+import Preloader from "../common/preloader";
 
 const Profile = (props) => {
-    return <div className={`${p.profile} content`}>
-        <div>
-            <img
-                src="https://www.bannerbatterien.com/upload/filecache/Banner-Batterien-Solar-web_5b783e66a0dd14b56c07227718cd636d.jpg"
-                alt=""/>
+    if (!props.profileInfo)
+        return <Preloader/>;
+    return <div>
+        <div className={`${p.profile} content`} style={{display: props.isFetching ? 'none' : 'block'}}>
+            <div>
+                <img
+                    src={banner}
+                    alt=""/>
+            </div>
+            <ProfileInfo {...props}/>
+            <MyPostsContainer/>
         </div>
-        <ProfileInfo/>
-        <MyPostsContainer />
     </div>
 };
 

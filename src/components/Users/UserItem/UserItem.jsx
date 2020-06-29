@@ -1,6 +1,7 @@
 import React from "react";
 import s from './UserItem.module.css'
 import userPhoto from '../../../assets/photos/user.jpg'
+import {NavLink} from "react-router-dom";
 
 const UserItem = (props) => {
 
@@ -12,9 +13,10 @@ const UserItem = (props) => {
         <div className={s.main}>
             <div className={s.logo}>
                 <div>
-                    <img
-                        src={props.userAvatar? props.userAvatar : userPhoto}
+                    <NavLink to={`/profile/${props.userId}`}> <img
+                        src={props.userAvatar ? props.userAvatar : userPhoto}
                         alt=""/>
+                    </NavLink>
                 </div>
                 <div>
                     <button className={s.button} onClick={onFollowChange}>
@@ -27,7 +29,7 @@ const UserItem = (props) => {
                     {props.name}
                 </div>
                 <div className={s.item2}>
-                    {props.status? props.status : '...'}
+                    {props.status ? props.status : '...'}
                 </div>
                 <div className={s.item3}>
                     <div>

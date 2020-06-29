@@ -1,14 +1,17 @@
-
-.logo img {
-    height: 100px;
-    transform: translate(0, 0);
-    left: 0;
-    float: left;
+.container{
+    display: grid;
+    grid-template-columns: 230px 1fr;
 }
+.logo img {
+    width: 200px;
+    height: 200px;
+    }
 
 .logo {
-    height: 100px;
 }
 .description{
+    font-family: Arial;
+    font-style: normal;
+    font-size: 14pt;
     padding: 10px;
 }

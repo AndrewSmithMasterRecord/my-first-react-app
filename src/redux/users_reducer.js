@@ -7,56 +7,18 @@ const SET_FETCHING_STATE = 'SET_FETCHING_STATE';
 
 let initial_value = {
     users: [
-       /* {
-            "name": "Limon",
-            "id": 8961,
-            "uniqueUrlName": null,
-            "photos": {
-                "small": null,
-                "large": null
-            },
-            "status": null,
-            "followed": false
-        },
-        {
-            "name": "FedechkoYuriy",
-            "id": 8960,
-            "uniqueUrlName": null,
-            "photos": {
-                "small": null,
-                "large": null
-            },
-            "status": null,
-            "followed": false
-        }*/
-        /*{
-            id: '1',
-            followed: true,
-            fullName: 'Andrew',
-            status: 'I am a boss',
-            location: {city: 'Molodechno', country: 'Belarus'}
-        },
-        {
-            id: '2',
-            followed: false,
-            fullName: 'Viktor',
-            status: 'I am a boss too',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: '3',
-            followed: false,
-            fullName: 'Sasha',
-            status: 'I am a boss too',
-            location: {city: 'Hoiniki', country: 'Belarus'}
-        },
-        {
-            id: '4',
-            followed: true,
-            fullName: 'Petia',
-            status: 'I am a boss too',
-            location: {city: 'Gomel', country: 'Belarus'}
-        },*/
+        /* {
+             "name": "Limon",
+             "id": 8961,
+             "uniqueUrlName": null,
+             "photos": {
+                 "small": null,
+                 "large": null
+             },
+             "status": null,
+             "followed": false
+         }*/
+
     ],
     currentPage: 1,
     pageSize: 10,
@@ -84,20 +46,20 @@ const usersReducer = (state = initial_value, action) => {
         case SET_USERS:
             return {
                 ...state,
-                users: [ ...action.users]
+                users: [...action.users]
             };
         case SET_CURRENT_PAGE:
-            return{
+            return {
                 ...state,
                 currentPage: action.page
             };
         case USERS_COUNT:
-            return{
+            return {
                 ...state,
                 totalUsers: action.count
             };
         case SET_FETCHING_STATE:
-            return{
+            return {
                 ...state,
                 isFetching: action.isFetching
             };
@@ -109,11 +71,9 @@ const usersReducer = (state = initial_value, action) => {
 
 export const followToggle = (id) => ({type: FOLLOW_TOGGLE, id: id});
 export const setUsers = (users) => ({type: SET_USERS, users: users});
-export const setCurrentPage = (page) =>({type: SET_CURRENT_PAGE, page: page});
+export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page: page});
 export const setUsersCounter = (count) => ({type: USERS_COUNT, count: count});
 export const setFetchingState = (isFetching) => ({type: SET_FETCHING_STATE, isFetching: isFetching});
-
-
 
 
 export default usersReducer

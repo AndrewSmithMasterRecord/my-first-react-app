@@ -8,7 +8,8 @@ import {withRouter} from "react-router-dom";
 let mapStateToProps = (state) => {
     return {
         profileInfo: state.profilePage.profileInfo,
-        isFetching: state.profilePage.isFetching
+        isFetching: state.profilePage.isFetching,
+        authId: state.auth.data.id
     }
 };
 
@@ -19,12 +20,15 @@ class ProfileContainerAPI extends React.Component {
         this.props.setIsFetching(true);
         let userId = this.props.match.params.userId;
         if(!userId)
-            userId = 2;
+            userId = this.props.authId;
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(item => {
                 this.props.setProfileInfo(item.data);
                 this.props.setIsFetching(false);
             });
+    }
+    componentWillUnmount() {
+        this.props.setProfileInfo(null);
     }
 
     render() {

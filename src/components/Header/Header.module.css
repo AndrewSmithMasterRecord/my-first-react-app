@@ -1,10 +1,19 @@
 .header {
-    background-color: #222835;
-}
+     background-color: #222835;
+ }
+
 header {
     grid-area: header;
 }
 
 header img {
     width: 100px;
+}
+
+.auth {
+    color: white;
+}
+
+.auth span {
+    float: right;
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Aside from "./components/Aside/Aside";
 import Footer from "./components/Footer/Footer";
@@ -12,13 +11,14 @@ import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 const App = () => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
-                <Header/>
+                <HeaderContainer/>
                 <Nav/>
                 <div className='app-wrapper-content'>
                     {/*<Route path='/dialogs' component={DialogItem}/>

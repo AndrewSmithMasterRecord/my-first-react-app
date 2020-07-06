@@ -9,7 +9,9 @@ class Users extends React.Component {
     componentDidMount() {
         this.props.setFetchingState(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}
-                    &page=${this.props.currentPage}`)
+                    &page=${this.props.currentPage}`, {
+            withCredentials: true
+        })
             .then(item => {
                 this.props.setUsers(item.data.items);
                 this.props.setUsersCounter(item.data.totalCount);
@@ -27,7 +29,9 @@ class Users extends React.Component {
     onPageChanged(i) {
         this.props.setCurrentPage(i);
         this.props.setFetchingState(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${i}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${i}`, {
+            withCredentials: true
+        })
             .then(item => {
                 this.props.setUsers(item.data.items);
                 this.props.setUsersCounter(item.data.totalCount);

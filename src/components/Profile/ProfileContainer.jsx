@@ -21,7 +21,9 @@ class ProfileContainerAPI extends React.Component {
         let userId = this.props.match.params.userId;
         if(!userId)
             userId = this.props.authId;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`, {
+            withCredentials: true
+        })
             .then(item => {
                 this.props.setProfileInfo(item.data);
                 this.props.setIsFetching(false);

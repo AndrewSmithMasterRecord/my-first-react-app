@@ -7,7 +7,8 @@ import * as axios from "axios";
 let mapStateToProps = (state) => ({
     messages: state.auth.messages,
     data: state.auth.data,
-    isFetching: state.auth.isFetching
+    isFetching: state.auth.isFetching,
+    isAuth: !state.auth.resultCode
 });
 
 

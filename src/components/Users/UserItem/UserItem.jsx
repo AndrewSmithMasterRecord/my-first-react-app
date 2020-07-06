@@ -2,11 +2,35 @@ import React from "react";
 import s from './UserItem.module.css'
 import userPhoto from '../../../assets/photos/user.jpg'
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 const UserItem = (props) => {
 
     let onFollowChange = () => {
-        props.follow(props.userId);
+        if (props.followState) {
+            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.userId}`, {
+                withCredentials: true,
+                headers: {
+                    'API-KEY': 'b89a2c08-7d00-43b6-8753-a462d1981a9f'
+                }
+            })
+                .then(item => {
+                    if (item.data.resultCode==0)
+                        props.follow(props.userId);
+                });
+        } else {
+            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${props.userId}`, {}, {
+                withCredentials: true,
+                headers: {
+                    'API-KEY': 'b89a2c08-7d00-43b6-8753-a462d1981a9f'
+                }
+            })
+                .then(item => {
+                    debugger
+                    if (item.data.resultCode==0)
+                        props.follow(props.userId);
+                });
+        }
     };
 
     return (

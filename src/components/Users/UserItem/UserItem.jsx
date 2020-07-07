@@ -3,31 +3,21 @@ import s from './UserItem.module.css'
 import userPhoto from '../../../assets/photos/user.jpg'
 import {NavLink} from "react-router-dom";
 import * as axios from "axios";
+import {userAPI} from "../../../API/userApi";
 
 const UserItem = (props) => {
 
     let onFollowChange = () => {
         if (props.followState) {
-            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.userId}`, {
-                withCredentials: true,
-                headers: {
-                    'API-KEY': 'b89a2c08-7d00-43b6-8753-a462d1981a9f'
-                }
-            })
+            userAPI.unfollow(props.userId)
                 .then(item => {
-                    if (item.data.resultCode==0)
+                    if (item.resultCode==0)
                         props.follow(props.userId);
                 });
         } else {
-            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${props.userId}`, {}, {
-                withCredentials: true,
-                headers: {
-                    'API-KEY': 'b89a2c08-7d00-43b6-8753-a462d1981a9f'
-                }
-            })
+            userAPI.follow(props.userId)
                 .then(item => {
-                    debugger
-                    if (item.data.resultCode==0)
+                    if (item.resultCode==0)
                         props.follow(props.userId);
                 });
         }

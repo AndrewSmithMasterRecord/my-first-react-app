@@ -4,6 +4,7 @@ import {
     followToggle,
     setCurrentPage,
     setFetchingState,
+    setFollowingProgressState,
     setUsers,
     setUsersCounter
 } from "../../redux/users_reducer";
@@ -15,13 +16,14 @@ let mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         pageSize: state.usersPage.pageSize,
         totalUsers: state.usersPage.totalUsers,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 };
 
 
 let UsersContainer = connect(mapStateToProps, {
-    followToggle, setUsers, setCurrentPage, setUsersCounter, setFetchingState
+    followToggle, setUsers, setCurrentPage, setUsersCounter, setFetchingState, setFollowingProgressState
 })(Users);
 
 export default UsersContainer;

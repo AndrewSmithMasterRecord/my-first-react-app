@@ -57,6 +57,8 @@ class Users extends React.Component {
                                    follow={this.props.followToggle}
                                    userAvatar={item.photos.small}
                                    key={item.id}
+                                   setFollowingProgressState={this.props.setFollowingProgressState}
+                                   followingInProgress={this.props.followingInProgress}
             />);
         return (<div>
                 {this.props.isFetching ? <Preloader/> : null}

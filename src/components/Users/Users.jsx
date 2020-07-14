@@ -2,37 +2,21 @@ import React from "react";
 import UserItem from "./UserItem/UserItem";
 import s from './Users.module.css'
 import Preloader from "../common/preloader";
-import {userAPI} from "../../API/userApi";
 
 class Users extends React.Component {
 
     componentDidMount() {
-        this.props.setFetchingState(true);
-        userAPI.getUsers(1, this.props.pageSize)
-            .then(item => {
-                this.props.setUsers(item.items);
-                this.props.setUsersCounter(item.totalCount);
-                this.props.setFetchingState(false);
-            });
+        this.props.getUsers(1, this.props.pageSize);
     }
 
     componentWillUnmount() {
-        this.props.setUsers([]);
         this.props.setCurrentPage(1);
         this.props.setUsersCounter(0);
-        this.props.setFetchingState(false);
     }
 
     onPageChanged(i) {
         this.props.setCurrentPage(i);
-        this.props.setFetchingState(true);
-
-        userAPI.getUsers(i,this.props.pageSize)
-            .then(item => {
-                this.props.setUsers(item.items);
-                this.props.setUsersCounter(item.totalCount);
-                this.props.setFetchingState(false);
-            });
+        this.props.getUsers(i, this.props.pageSize);
     }
 
     render() {
@@ -54,15 +38,15 @@ class Users extends React.Component {
                                    city={'Molodechno'}
                                    followState={item.followed}
                                    userId={item.id}
-                                   follow={this.props.followToggle}
+                                   follow={this.props.setFollow}
+                                   unfollow={this.props.clearFollow}
                                    userAvatar={item.photos.small}
                                    key={item.id}
-                                   setFollowingProgressState={this.props.setFollowingProgressState}
                                    followingInProgress={this.props.followingInProgress}
             />);
         return (<div>
                 {this.props.isFetching ? <Preloader/> : null}
-                <div style={{display: this.props.isFetching ? 'none' : 'block'}} >
+                <div style={{display: this.props.isFetching ? 'none' : 'block'}}>
                     <div>
                         {pagesMap}
                     </div>

@@ -1,11 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    followToggle,
+    clearFollow,
+    getUsers,
     setCurrentPage,
-    setFetchingState,
-    setFollowingProgressState,
-    setUsers,
+    setFetchingState, setFollow,
     setUsersCounter
 } from "../../redux/users_reducer";
 import Users from "./Users";
@@ -23,7 +22,8 @@ let mapStateToProps = (state) => {
 
 
 let UsersContainer = connect(mapStateToProps, {
-    followToggle, setUsers, setCurrentPage, setUsersCounter, setFetchingState, setFollowingProgressState
+    setCurrentPage, setUsersCounter, setFetchingState,
+    getUsers, setFollow, clearFollow
 })(Users);
 
 export default UsersContainer;

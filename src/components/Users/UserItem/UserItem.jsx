@@ -2,28 +2,15 @@ import React from "react";
 import s from './UserItem.module.css'
 import userPhoto from '../../../assets/photos/user.jpg'
 import {NavLink} from "react-router-dom";
-import {userAPI} from "../../../API/userApi";
 
 const UserItem = (props) => {
 
     let onFollowChange = () => {
 
         if (props.followState) {
-            props.setFollowingProgressState(true, props.userId);
-            userAPI.unfollow(props.userId)
-                .then(item => {
-                    if (item.resultCode == 0)
-                        props.follow(props.userId);
-                    props.setFollowingProgressState(false, props.userId);
-                });
+            props.follow(props.userId);
         } else {
-            props.setFollowingProgressState(true, props.userId);
-            userAPI.follow(props.userId)
-                .then(item => {
-                    if (item.resultCode == 0)
-                        props.follow(props.userId);
-                    props.setFollowingProgressState(false, props.userId);
-                });
+            props.unfollow(props.userId);
         }
     };
     //let buttonDisable = props.followingInProgress.indexOf(props.userId) > -1 ? true : false;

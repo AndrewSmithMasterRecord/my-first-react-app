@@ -1,3 +1,5 @@
+import {userAPI} from "../API/userApi";
+
 const FOLLOW_TOGGLE = 'FOLLOW-TOGGLE';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
@@ -90,6 +92,40 @@ export const setFollowingProgressState = (followingInProgress, userId) => ({
     type: SET_FOLLOWING_PROGRESS_STATE,
     followingInProgress, userId
 });
+export const getUsers = (page, pageSize) =>{
+    return (dispatch) => {
+        dispatch(setFetchingState(true));
+        userAPI.getUsers(page, pageSize)
+            .then(item => {
+                dispatch(setUsers(item.items));
+                dispatch(setUsersCounter(item.totalCount));
+                dispatch(setFetchingState(false));
+            });
+    }
+};
+
+export const setFollow = (userId) =>{
+    return (dispatch) => {
+        dispatch(setFollowingProgressState(true, userId));
+        userAPI.unfollow(userId)
+            .then(item => {
+                if (item.resultCode == 0)
+                    dispatch(followToggle(userId));
+                dispatch(setFollowingProgressState(false, userId));
+            });
+    }
+};
+export const clearFollow = (userId) =>{
+    return (dispatch) => {
+        dispatch(setFollowingProgressState(true, userId));
+        userAPI.follow(userId)
+            .then(item => {
+                if (item.resultCode == 0)
+                    dispatch(followToggle(userId));
+                dispatch(setFollowingProgressState(false, userId));
+            });
+    }
+};
 
 
 export default usersReducer

@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const SET_PROFILE_INFO = 'SET_PROFILE_INFO';
 const IS_FETCHING = 'IS_FETCHING';
+const PROFILE_CLEAR = 'PROFILE_CLEAR';
 
 let initial_value = {
     postData: [
@@ -44,6 +45,11 @@ const profileReducer = (state = initial_value, action) => {
                 ...state,
                 isFetching: action.isFetching
             };
+        case PROFILE_CLEAR:
+            return {
+                ...state,
+                profileInfo: null
+            };
         default:
             return state;
     }
@@ -53,6 +59,7 @@ export const addPostActionCreator = () => ({type: ADD_POST});
 export const updatePostTextActionCreator = (text) => ({type: UPDATE_POST_TEXT, newText: text});
 export const setProfileInfo = (profileInfo) => ({type: SET_PROFILE_INFO, profileInfo});
 export const setIsFetching = (isFetching) => ({type: IS_FETCHING, isFetching});
+export const clearProfile = () => ({type: PROFILE_CLEAR});
 
 export const getProfile = (userId) => {
     return (dispatch) => {

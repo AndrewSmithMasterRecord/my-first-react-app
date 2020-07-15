@@ -10,6 +10,7 @@ let initial_value = {
         email: '',
         login: ''
     },
+    isAuth: false,
     isFetching: false
 };
 
@@ -18,7 +19,8 @@ const authReducer = (state = initial_value, action) => {
             case SET_AUTH_STATUS:
                 return {
                     ...state,
-                    data: {id: action.id, email: action.email, login: action.login }
+                    data: {id: action.id, email: action.email, login: action.login },
+                    isAuth: true
                 };
 
             case IS_FETCHING:

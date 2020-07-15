@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Redirect} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 let mapStateToProps = (state) => {
     return {
@@ -8,16 +8,19 @@ let mapStateToProps = (state) => {
     }
 };
 
-let AuthRedirect = (Component) => {
-    class Redirect  extends React.Component {
+export const authRedirect = (Component) => {
+    class Redirect extends React.Component {
         render() {
-            if (!this.props.isAuth)
-                return <div>Redirect</div>;
+            debugger
+            if (!this.props.isAuth) {
+                this.props.history.push('/login');
+            }
             return <Component {...this.props}/>
         }
     };
-   let ConnectedAuthRedirect = connect(mapStateToProps)(Redirect);
-    return ConnectedAuthRedirect;
+    let ConnectedAuthRedirect = connect(mapStateToProps)(Redirect);
+    let ConnectToHistory = withRouter(ConnectedAuthRedirect);
+    return ConnectToHistory;
 };
 
-export default AuthRedirect;
+export default authRedirect;

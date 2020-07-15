@@ -4,7 +4,7 @@ import Nav from "./components/Nav/Nav";
 import Aside from "./components/Aside/Aside";
 import Footer from "./components/Footer/Footer";
 import Dialogs from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -17,7 +17,6 @@ import Login from "./components/Login/Login";
 
 const App = () => {
     return (
-        <BrowserRouter>
             <div className="app-wrapper">
                 <HeaderContainer/>
                 <Nav/>
@@ -40,7 +39,6 @@ const App = () => {
                 {/*<Aside/>*/}
                 {/*<Footer/>*/}
             </div>
-        </BrowserRouter>
     );
 };
 

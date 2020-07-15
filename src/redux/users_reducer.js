@@ -71,7 +71,7 @@ const usersReducer = (state = initial_value, action) => {
             let buttonBlockedArray = [...state.followingInProgress];
             action.followingInProgress ? buttonBlockedArray.push(action.userId) : buttonBlockedArray =
                 buttonBlockedArray.filter(
-                    value => value != action.userId
+                    value => value !== action.userId
                 );
             return {
                 ...state,
@@ -109,7 +109,7 @@ export const setFollow = (userId) =>{
         dispatch(setFollowingProgressState(true, userId));
         userAPI.unfollow(userId)
             .then(item => {
-                if (item.resultCode == 0)
+                if (item.resultCode === 0)
                     dispatch(followToggle(userId));
                 dispatch(setFollowingProgressState(false, userId));
             });
@@ -120,7 +120,7 @@ export const clearFollow = (userId) =>{
         dispatch(setFollowingProgressState(true, userId));
         userAPI.follow(userId)
             .then(item => {
-                if (item.resultCode == 0)
+                if (item.resultCode === 0)
                     dispatch(followToggle(userId));
                 dispatch(setFollowingProgressState(false, userId));
             });

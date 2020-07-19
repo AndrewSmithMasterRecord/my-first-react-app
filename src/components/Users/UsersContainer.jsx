@@ -8,6 +8,8 @@ import {
     setUsersCounter
 } from "../../redux/users_reducer";
 import Users from "./Users";
+import {compose} from "redux";
+import authRedirect from "../../hoc/withAuthRedirect";
 
 let mapStateToProps = (state) => {
     return {
@@ -21,9 +23,10 @@ let mapStateToProps = (state) => {
 };
 
 
-let UsersContainer = connect(mapStateToProps, {
-    setCurrentPage, setUsersCounter, setFetchingState,
-    getUsers, setFollow, clearFollow
-})(Users);
-
-export default UsersContainer;
+export default compose(
+    authRedirect,
+    connect(mapStateToProps, {
+        setCurrentPage, setUsersCounter, setFetchingState,
+        getUsers, setFollow, clearFollow
+    })
+)(Users);

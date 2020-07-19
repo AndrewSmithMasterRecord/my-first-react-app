@@ -1,6 +1,7 @@
 import React from 'react';
 import p from './ProfileInfo.module.css'
 import ava from "../../../assets/photos/user.jpg";
+import ProfileStatus from "./ProfileStatus";
 
 
 const ProfileInfo = (props) => {
@@ -12,6 +13,7 @@ const ProfileInfo = (props) => {
                     alt=""/>
             </div>
             <div className={p.description}>
+                <ProfileStatus {...props}/>
                 <b>Abaut me</b>: {props.profileInfo.aboutMe}<br/>
                 <b>My name</b>: {props.profileInfo.fullName}<br/>
                 <p><b>contacts: </b></p>

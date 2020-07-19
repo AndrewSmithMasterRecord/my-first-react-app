@@ -11,7 +11,6 @@ let mapStateToProps = (state) => {
 export const authRedirect = (Component) => {
     class Redirect extends React.Component {
         render() {
-            debugger
             if (!this.props.isAuth) {
                 this.props.history.push('/login');
             }

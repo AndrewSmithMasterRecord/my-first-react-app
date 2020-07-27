@@ -1,3 +1,5 @@
+import {authAPI} from "../API/authFormApi";
+
 const SET_AUTH_STATUS = 'SET_AUTH_STATUS';
 const IS_FETCHING = 'IS_FETCHING';
 
@@ -19,7 +21,7 @@ const authReducer = (state = initial_value, action) => {
             case SET_AUTH_STATUS:
                 return {
                     ...state,
-                    data: {id: action.id, email: action.email, login: action.login },
+                    data: {id: action.id, email: action.email, login: action.login},
                     isAuth: true
                 };
 
@@ -36,5 +38,21 @@ const authReducer = (state = initial_value, action) => {
 
 export const setAuth = (id, email, login) => ({type: SET_AUTH_STATUS, id, email, login});
 export const setIsFetching = (isFetching) => ({type: IS_FETCHING, isFetching});
+
+export const loginMe = data => {
+    return dispatch => {
+        authAPI.login(data)
+            .then(response => {
+                console.log(response);
+                if (!response.resultCode) {
+                    authAPI.authMe()
+                        .then(response => {
+                            dispatch(setAuth(response.data.id, response.data.email, response.data.login));
+                            console.log(response.data.id, response.data.email, response.data.login);
+                        })
+                }
+            })
+    }
+};
 
 export default authReducer

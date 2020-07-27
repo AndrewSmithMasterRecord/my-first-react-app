@@ -1,13 +1,14 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
+import {loginMe} from "../../redux/auth_reducer";
+import {connect} from "react-redux";
 
 const LoginForm = (props) => {
-    debugger
     return <form onSubmit={props.handleSubmit}>
         <div>
-            <label>Login</label>
+            <label>Email</label>
             <div>
-                <Field name={"login"} placeholder={"Login"} component={"input"} type={"text"}/>
+                <Field name={"email"} placeholder={"Email"} component={"input"} type={"text"}/>
             </div>
 
         </div>
@@ -19,7 +20,7 @@ const LoginForm = (props) => {
         </div>
         <div>
             <div>
-                <Field name={"Remember"} component={"input"} type={"checkbox"}/>
+                <Field name={"remember"} component={"input"} type={"checkbox"}/>
             </div>
             <label>Remember me</label>
         </div>
@@ -33,14 +34,19 @@ const LoginForm = (props) => {
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
 
-const Login = (props) => {
-    const onSubmit = (data) => {
+class Login extends React.Component{
+    onSubmit = (data) => {
         console.log(data);
+       this.props.loginMe(data);
+
     };
-    return <div>
-        <h1>Login</h1>
-        <LoginReduxForm onSubmit={onSubmit}/>
-    </div>
+    render(){
+        return <div>
+            <h1>Login</h1>
+            <LoginReduxForm onSubmit={this.onSubmit}/>
+        </div>
+    }
+
 };
 
-export default Login;
+export default connect(null, {loginMe})(Login);

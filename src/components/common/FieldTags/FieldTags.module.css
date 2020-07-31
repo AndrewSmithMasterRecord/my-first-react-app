@@ -1,0 +1,7 @@
+
+.fielderror input{
+    border: red solid 2px;
+}
+.fielderror span{
+    color: red;
+}

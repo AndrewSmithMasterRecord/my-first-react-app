@@ -10,15 +10,23 @@ import {
 import Users from "./Users";
 import {compose} from "redux";
 import authRedirect from "../../hoc/withAuthRedirect";
+import {
+    selectCurrentPage, selectFollowingInProgress,
+    selectIsFetching,
+    selectPageSize,
+    selectTotalUsers,
+     usersSuperSelector
+} from "../../redux/users-selectors";
+
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        currentPage: state.usersPage.currentPage,
-        pageSize: state.usersPage.pageSize,
-        totalUsers: state.usersPage.totalUsers,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: usersSuperSelector(state),
+        currentPage: selectCurrentPage(state),
+        pageSize: selectPageSize(state),
+        totalUsers: selectTotalUsers(state),
+        isFetching: selectIsFetching(state),
+        followingInProgress: selectFollowingInProgress(state)
     }
 };
 

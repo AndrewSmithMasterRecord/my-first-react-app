@@ -4,6 +4,8 @@ import {loginMe} from "../../redux/auth_reducer";
 import {connect} from "react-redux";
 import {maxLength, required} from "../../Utils/validators";
 import {FieldTagCreator} from "../common/FieldTags/FieldTags";
+import {Redirect} from "react-router-dom";
+import style from "./login.module.css"
 
 let maxLen = maxLength(30);
 let InputTag = FieldTagCreator("input");
@@ -42,6 +44,9 @@ const LoginForm = (props) => {
             </div>
             <label>Remember me</label>
         </div>
+        {props.error && <div className={style.error}>
+            {props.error}
+        </div>}
         <div>
             <button>Login</button>
         </div>
@@ -60,6 +65,9 @@ class Login extends React.Component {
     };
 
     render() {
+        if (this.props.isAuth) {
+            return <Redirect to={"/profile"}/>
+        }
         return <div>
             <h1>Login</h1>
             <LoginReduxForm onSubmit={this.onSubmit}/>
@@ -68,4 +76,8 @@ class Login extends React.Component {
 
 };
 
-export default connect(null, {loginMe})(Login);
+let mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+});
+
+export default connect(mapStateToProps, {loginMe})(Login);

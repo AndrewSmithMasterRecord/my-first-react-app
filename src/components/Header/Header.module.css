@@ -9,11 +9,20 @@ header {
 header img {
     width: 100px;
 }
+.imggrid{
+    justify-self: start
+}
 
 .auth {
     color: white;
+    align-self: center;
+    justify-self: center
 }
 
-.auth span {
-    float: right;
+
+.headerGrid {
+    display: grid;
+    grid-template-columns: 1fr 150px;
+    align-items: center;
+    justify-items: center;
 }

@@ -1,10 +1,7 @@
 import React from 'react';
 import './App.css';
 import Nav from "./components/Nav/Nav";
-import Aside from "./components/Aside/Aside";
-import Footer from "./components/Footer/Footer";
-import Dialogs from "./components/Dialogs/Dialogs";
-import {Route} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -13,10 +10,23 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import {initialise} from "./redux/app_reducer";
+import {connect} from "react-redux";
+import {compose} from "redux";
+import Preloader from "./components/common/preloader";
 
 
-const App = () => {
-    return (
+class App extends React.Component {
+    componentDidMount() {
+        this.props.initialise();
+        if(!this.props.isAuth)
+            this.props.history.push("/login");
+    }
+
+    render() {
+        if(!this.props.initialized)
+            return <Preloader/>;
+        return (
             <div className="app-wrapper">
                 <HeaderContainer/>
                 <Nav/>
@@ -36,11 +46,17 @@ const App = () => {
                     <Route path='/users' render={() => <UsersContainer/>}/>
                     <Route path='/login' render={() => <Login/>}/>
                 </div>
-                {/*<Aside/>*/}
-                {/*<Footer/>*/}
             </div>
-    );
-};
+        );
+    }
+}
+
+let mapStateToProps = state => ({
+    initialized: state.app.initialized,
+    isAuth: state.auth.isAuth
+});
 
 
-export default App;
+export default compose(
+    withRouter,
+    connect(mapStateToProps, {initialise}))(App);

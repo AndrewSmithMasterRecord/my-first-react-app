@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import {setAuth, setIsFetching} from "../../redux/auth_reducer";
+import {logOutMe, setAuth, setIsFetching} from "../../redux/auth_reducer";
 import {authAPI} from "../../API/authFormApi";
 
 let mapStateToProps = (state) => ({
@@ -17,14 +17,17 @@ class HeaderContainer extends React.Component {
         authAPI.authMe()
             .then(item => {
                 if (!item.resultCode) {
-                    this.props.setAuth(item.data.id, item.data.email, item.data.login);
+                    this.props.setAuth(item.data.id, item.data.email, item.data.login, true);
                 }
             });
-    }
+    };
+    logOut = () => {
+        this.props.logOutMe();
+    };
 
     render() {
-        return <Header {...this.props} />
+        return <Header {...this.props} logOut={this.logOut} />
     }
 }
 
-export default connect(mapStateToProps, {setAuth, setIsFetching})(HeaderContainer);
+export default connect(mapStateToProps, {setAuth, setIsFetching, logOutMe})(HeaderContainer);

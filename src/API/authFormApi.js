@@ -15,8 +15,14 @@ export const authAPI = {
                 return response.data;
             })
     },
-    authMe(){
+    authMe() {
         return instance.get("/auth/me")
+            .then(response => {
+                return response.data;
+            })
+    },
+    logout() {
+        return instance.delete("/auth/login")
             .then(response => {
                 return response.data;
             })
